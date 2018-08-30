@@ -4,7 +4,7 @@
 
 namespace mygui {
 
-class Textbox : public Object {
+class MYGUI_API Textbox : public Object {
 	
 	using fptr = void(*)(void*);
 

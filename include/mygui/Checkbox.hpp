@@ -4,7 +4,7 @@
 
 namespace mygui {
 
-class Checkbox : public Object {
+class MYGUI_API Checkbox : public Object {
 
 	using fptr = void(*)(void*);
 

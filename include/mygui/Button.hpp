@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Config.hpp"
 #include "Object.hpp"
 
 namespace mygui {

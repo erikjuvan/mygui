@@ -4,7 +4,7 @@
 
 namespace mygui {
 
-class Label : public Object {
+class MYGUI_API Label : public Object {
 
 	using fptr = void(*)(void*);
 

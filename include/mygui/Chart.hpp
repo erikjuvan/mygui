@@ -4,7 +4,7 @@
 
 namespace mygui {
 
-class Signal : public sf::Drawable {
+class MYGUI_API Signal : public sf::Drawable {
 
 public:
 	Signal(int n, sf::Color col, const sf::FloatRect& region, float *max_val);
@@ -60,7 +60,7 @@ private:
 };
 
 
-class Chart : public Object {
+class MYGUI_API Chart : public Object {
 
 	using fptr = void(*)(void*, const sf::Event&);
 
