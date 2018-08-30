@@ -62,7 +62,7 @@ private:
 
 class MYGUI_API Chart : public Object {
 
-	using fptr = void(*)(void*, const sf::Event&);
+	using fptr = void(*)(const sf::Event&);
 
 public:
 
@@ -85,7 +85,7 @@ public:
 	void ToggleDrawAllSignals();
 
 	// Actions
-	void OnKeyPress(void* vobj, const fptr& f);
+	void OnKeyPress(const fptr& f);
 
 private:
 	static constexpr int m_margin{ 20 };
@@ -114,7 +114,6 @@ private:
 	bool	m_mouseover;
 
 	fptr m_onKeyPress{ nullptr };
-	void* m_onKeyPress_vobject{ nullptr };
 };
 
 }

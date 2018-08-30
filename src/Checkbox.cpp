@@ -50,7 +50,7 @@ void Checkbox::Handle(const sf::Event& event) {
 				}
 
 				if (m_onClick != nullptr)
-					m_onClick(m_onClick_vobject);
+					m_onClick();
 
 				m_pressed_in_focus = false;
 			}
@@ -62,9 +62,8 @@ void Checkbox::Handle(const sf::Event& event) {
 }
 
 // Actions
-void Checkbox::OnClick(void* vobj, const fptr& f) {
+void Checkbox::OnClick(const fptr& f) {
 	m_onClick = f;
-	m_onClick_vobject = vobj;
 }
 
 bool Checkbox::IsChecked() {

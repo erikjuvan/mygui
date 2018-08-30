@@ -19,7 +19,7 @@ void Label::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 void Label::Handle(const sf::Event& event)  {
 	if (m_text.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 		if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-			if (m_onClick) m_onClick(m_onClick_vobject);
+			if (m_onClick) m_onClick();
 		}
 	}
 }
@@ -29,9 +29,8 @@ void Label::SetText(const std::string& text) {
 }
 
 // Actions
-void Label::OnClick(void* vobj, const fptr& f) {
+void Label::OnClick(const fptr& f) {
 	m_onClick = f;
-	m_onClick_vobject = vobj;
 }
 
 }

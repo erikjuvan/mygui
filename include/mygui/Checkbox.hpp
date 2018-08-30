@@ -6,7 +6,7 @@ namespace mygui {
 
 class MYGUI_API Checkbox : public Object {
 
-	using fptr = void(*)(void*);
+	using fptr = void(*)();
 
 public:
 	Checkbox(int x, int y, const char* text = "", int w = 17, int h = 17, int character_size = 18, const char* font_name = "arial.ttf");
@@ -17,7 +17,7 @@ public:
 	bool IsChecked();
 
 	// Actions
-	void OnClick(void* vobj, const fptr& f);	
+	void OnClick(const fptr& f);	
 
 private:
 	static constexpr int m_margin{ 20 };
@@ -31,7 +31,6 @@ private:
 	bool				m_pressed_in_focus{ false };
 
 	fptr				m_onClick{ nullptr };
-	void				*m_onClick_vobject{ nullptr };
 };
 
 }

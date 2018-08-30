@@ -6,7 +6,7 @@ namespace mygui {
 
 class MYGUI_API Label : public Object {
 
-	using fptr = void(*)(void*);
+	using fptr = void(*)();
 
 public:
 	Label(int x, int y, const char* text, int character_size = 18, const char* font_name = "arial.ttf");
@@ -17,14 +17,13 @@ public:
 	void SetText(const std::string& text);
 
 	// Actions
-	void OnClick(void* vobj, const fptr& f);
+	void OnClick(const fptr& f);
 
 private:
 	sf::Text	m_text;
 	sf::Font	m_font;
 
 	fptr		m_onClick{ nullptr };
-	void*		m_onClick_vobject{ nullptr };
 };
 
 }

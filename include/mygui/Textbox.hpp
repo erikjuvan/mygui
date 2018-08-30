@@ -6,7 +6,7 @@ namespace mygui {
 
 class MYGUI_API Textbox : public Object {
 	
-	using fptr = void(*)(void*);
+	using fptr = void(*)();
 
 public:
 	Textbox(int x, int y, const std::string& text = "", int w = 90, int h = 30, int character_size = 18, const char* font_name = "arial.ttf");
@@ -18,7 +18,7 @@ public:
 	std::string GetText() const;
 
 	// Actions
-	void onKeyPress(void* vobj, const fptr& f);
+	void onKeyPress(const fptr& f);
 
 private:
 	static constexpr int m_margin{ 10 };
@@ -30,7 +30,6 @@ private:
 	bool				m_mouseover{ false };
 
 	fptr				m_keyPress{ nullptr };
-	void				*m_onKeyPress_vobject{ nullptr };
 };
 
 

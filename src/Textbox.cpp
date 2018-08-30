@@ -67,9 +67,8 @@ std::string Textbox::GetText() const {
 	return m_text.getString();
 }
 
-void Textbox::onKeyPress(void* vobj, const fptr& f) {
+void Textbox::onKeyPress(const fptr& f) {
 	m_keyPress = f;
-	m_onKeyPress_vobject = vobj;
 }
 
 }

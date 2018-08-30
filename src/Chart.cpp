@@ -246,7 +246,7 @@ Signal::Signal(int n, sf::Color col, const sf::FloatRect& region, float *max_val
 			}
 		}
 		else if (event.type == sf::Event::KeyReleased && m_mouseover) {
-			m_onKeyPress(m_onKeyPress_vobject, event);
+			m_onKeyPress(event);
 		}
 		else if (event.type == sf::Event::MouseMoved) {
 			if (m_chart_region.getGlobalBounds().contains(sf::Vector2f(event.mouseMove.x, event.mouseMove.y))) {
@@ -352,9 +352,8 @@ Signal::Signal(int n, sf::Color col, const sf::FloatRect& region, float *max_val
 			s->DisableTriggerFrame();
 	}
 
-	void Chart::OnKeyPress(void* vobj, const fptr& f) {
+	void Chart::OnKeyPress(const fptr& f) {
 		m_onKeyPress = f;
-		m_onKeyPress_vobject = vobj;
 	}
 
 	void Chart::ToggleDrawSignal(int idx) {

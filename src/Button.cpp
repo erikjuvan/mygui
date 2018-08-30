@@ -74,7 +74,7 @@ void Button::Handle(const sf::Event& event) {
 		}
 		else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
 			m_active_shape = &m_idle_shape;
-			if (m_onClick && m_pressed) m_onClick(m_onClick_vobject);
+			if (m_onClick && m_pressed) m_onClick();
 			m_pressed = false;
 		}
 	}
@@ -86,9 +86,8 @@ void Button::Handle(const sf::Event& event) {
 	}
 }
 
-void Button::OnClick(void* vobj, const fptr& f) {
+void Button::OnClick(const fptr& f) {
 	m_onClick = f;
-	m_onClick_vobject = vobj;
 }
 
 }
