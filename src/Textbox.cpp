@@ -11,18 +11,10 @@ Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int charac
 	m_rect.setOutlineThickness(1.f);
 
 	m_font.loadFromFile(font_name);
-	m_text.setFont(m_font);
-	m_text.setString(text);
+	m_text.setFont(m_font);	
 	m_text.setCharacterSize(character_size);
 	m_text.setFillColor(sf::Color::Black);
-
-	float tx = m_text.getLocalBounds().left;
-	float tw = m_text.getLocalBounds().width;
-	float ty = m_text.getLocalBounds().top;
-	float th = m_text.getLocalBounds().height;
-
-	m_text.setOrigin(tx, ty + th / 2.0f);
-	m_text.setPosition(x + m_margin, y + m_rect.getLocalBounds().height / 2.0f);
+	SetText(text);
 }
 
 void Textbox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -61,6 +53,14 @@ void Textbox::Handle(const sf::Event& event) {
 
 void Textbox::SetText(const std::string& text) {
 	m_text.setString(text);
+
+	float tx = m_text.getLocalBounds().left;
+	float tw = m_text.getLocalBounds().width;
+	float ty = m_text.getLocalBounds().top;
+	float th = m_text.getLocalBounds().height;
+
+	m_text.setOrigin(tx, ty + th / 2.0f);
+	m_text.setPosition(m_rect.getPosition().x + m_margin, m_rect.getPosition().y + m_rect.getLocalBounds().height / 2.0f);
 }
 
 std::string Textbox::GetText() const {
