@@ -41,7 +41,7 @@ void Textbox::Handle(const sf::Event& event) {
 		txt.setString(str);
 
 		if (txt.getGlobalBounds().width < (m_rect.getGlobalBounds().width - m_margin))
-			m_text.setString(str);
+			SetText(str);
 	}
 	else if (event.type == sf::Event::MouseMoved) {
 		if (m_rect.getGlobalBounds().contains(sf::Vector2f(event.mouseMove.x, event.mouseMove.y))) {
