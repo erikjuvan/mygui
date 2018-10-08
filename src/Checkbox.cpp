@@ -66,8 +66,18 @@ void Checkbox::OnClick(const fptr& f) {
 	m_onClick = f;
 }
 
-bool Checkbox::IsChecked() {
+bool Checkbox::Checked() const {
 	return m_checked;
+}
+
+void Checkbox::Checked(bool checked) {
+	m_checked = checked;
+	if (checked) {
+		m_rect = &m_rect_checked;
+	}
+	else {
+		m_rect = &m_rect_unchecked;
+	}
 }
 
 }

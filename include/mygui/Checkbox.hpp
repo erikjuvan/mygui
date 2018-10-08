@@ -14,7 +14,8 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	virtual void Handle(const sf::Event& event) override;
 
-	bool IsChecked();
+	bool Checked() const;
+	void Checked(bool checked);
 
 	// Actions
 	void OnClick(const fptr& f);	
