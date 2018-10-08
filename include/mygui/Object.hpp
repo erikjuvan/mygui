@@ -9,7 +9,7 @@ class MYGUI_API Object : public sf::Drawable {
 protected:
 	using fptr = void(*)();
 
-	bool	m_enabled;
+	bool	m_enabled{ true };
 
 public:
 	virtual void Handle(const sf::Event& event) = 0;
