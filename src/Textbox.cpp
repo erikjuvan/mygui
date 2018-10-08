@@ -23,6 +23,8 @@ void Textbox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 void Textbox::Handle(const sf::Event& event) {
+	if (!Enabled()) return;
+
 	if (event.type == sf::Event::TextEntered && m_mouseover) {
 
 		std::string str = m_text.getString();
@@ -69,6 +71,20 @@ std::string Textbox::GetText() const {
 
 void Textbox::onKeyPress(const fptr& f) {
 	m_keyPress = f;
+}
+
+void Textbox::Enabled(bool enabled) {
+	m_enabled = enabled;
+	if (enabled) {
+		m_text.setFillColor(sf::Color::Black);
+	}
+	else {
+		m_text.setFillColor(sf::Color(100, 100, 100));
+	}
+}
+
+bool Textbox::Enabled() const {
+	return m_enabled;
 }
 
 }

@@ -6,16 +6,16 @@ namespace mygui {
 
 class MYGUI_API Checkbox : public Object {
 
-	using fptr = void(*)();
-
 public:
 	Checkbox(int x, int y, const char* text = "", int w = 17, int h = 17, int character_size = 18, const char* font_name = "arial.ttf");
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	virtual void Handle(const sf::Event& event) override;
 
-	bool Checked() const;
+	void Enabled(bool enabled) override;
+	bool Enabled() const override;
 	void Checked(bool checked);
+	bool Checked() const;	
 
 	// Actions
 	void OnClick(const fptr& f);	
@@ -25,11 +25,12 @@ private:
 
 	sf::RectangleShape	m_rect_checked;
 	sf::RectangleShape	m_rect_unchecked;
-	sf::RectangleShape	* m_rect{ nullptr };
-	bool				m_checked;
+	sf::RectangleShape	* m_rect{ nullptr };	
 	sf::Text			m_text;
-	sf::Font			m_font;
+	sf::Font			m_font;	
+
 	bool				m_pressed_in_focus{ false };
+	bool				m_checked;
 
 	fptr				m_onClick{ nullptr };
 };

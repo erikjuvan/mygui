@@ -36,6 +36,42 @@ void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(m_text, states);
 }
 
+void Button::Handle(const sf::Event& event) {
+	if (!Enabled()) return;
+
+	if (m_active_shape->getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
+		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+			m_active_shape = &m_pressed_shape;
+			m_pressed = true;
+		}
+		else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+			m_active_shape = &m_idle_shape;
+			if (m_onClick && m_pressed) m_onClick();
+			m_pressed = false;
+		}
+	}
+	else {
+		if (m_active_shape == &m_pressed_shape && event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+			m_active_shape = &m_idle_shape;
+			m_pressed = false;
+		}
+	}
+}
+
+void Button::Enabled(bool enabled) {
+	m_enabled = enabled;
+	if (enabled) {
+		m_text.setFillColor(sf::Color::Black);
+	}
+	else {
+		m_text.setFillColor(sf::Color(100, 100, 100));
+	}
+}
+
+bool Button::Enabled() const {
+	return m_enabled;
+}
+
 void Button::SetText(const std::string& text) {
 	m_text.setString(text);
 
@@ -63,27 +99,6 @@ void Button::SetColor(const sf::Color& col) {
 
 void Button::ResetColor() {
 	m_idle_shape.setFillColor(m_idle_color);
-}
-
-void Button::Handle(const sf::Event& event) {
-
-	if (m_active_shape->getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
-		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-			m_active_shape = &m_pressed_shape;
-			m_pressed = true;
-		}
-		else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-			m_active_shape = &m_idle_shape;
-			if (m_onClick && m_pressed) m_onClick();
-			m_pressed = false;
-		}
-	}
-	else {
-		if (m_active_shape == &m_pressed_shape && event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-			m_active_shape = &m_idle_shape;
-			m_pressed = false;
-		}
-	}
 }
 
 void Button::OnClick(const fptr& f) {

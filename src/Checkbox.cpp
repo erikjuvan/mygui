@@ -34,6 +34,8 @@ void Checkbox::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 void Checkbox::Handle(const sf::Event& event) {
+	if (!Enabled()) return;
+
 	if (m_rect->getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
 		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
 			m_pressed_in_focus = true;
@@ -78,6 +80,20 @@ void Checkbox::Checked(bool checked) {
 	else {
 		m_rect = &m_rect_unchecked;
 	}
+}
+
+void Checkbox::Enabled(bool enabled) {
+	m_enabled = enabled;
+	if (enabled) {
+		m_text.setFillColor(sf::Color::Black);
+	}
+	else {
+		m_text.setFillColor(sf::Color(100, 100, 100));
+	}
+}
+
+bool Checkbox::Enabled() const {
+	return m_enabled;
 }
 
 }
