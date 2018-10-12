@@ -20,13 +20,13 @@ public:
     void SetText(const std::string& text);
 
     // Actions
-    void OnClick(const fptr& f);
+    void OnClick(const callback_type& f);
 
 private:
     sf::Text m_text;
     sf::Font m_font;
 
-    fptr m_onClick{nullptr};
+    callback_type m_onClick{nullptr};
 };
 
 } // namespace mygui

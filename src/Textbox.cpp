@@ -74,7 +74,7 @@ std::string Textbox::GetText() const
     return m_text.getString();
 }
 
-void Textbox::onKeyPress(const fptr& f)
+void Textbox::onKeyPress(const callback_type& f)
 {
     m_keyPress = f;
 }

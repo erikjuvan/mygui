@@ -2,6 +2,7 @@
 
 #include "Config.hpp"
 #include <SFML/Graphics.hpp>
+#include <functional>
 
 namespace mygui
 {
@@ -9,7 +10,7 @@ namespace mygui
 class MYGUI_API Object : public sf::Drawable
 {
 protected:
-    using fptr = void (*)();
+    using callback_type = std::function<void()>;
 
     bool m_enabled{true};
 

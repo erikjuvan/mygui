@@ -110,7 +110,7 @@ void Button::ResetColor()
     m_idle_shape.setFillColor(m_idle_color);
 }
 
-void Button::OnClick(const fptr& f)
+void Button::OnClick(const callback_type& f)
 {
     m_onClick = f;
 }

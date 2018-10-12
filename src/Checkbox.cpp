@@ -65,7 +65,7 @@ void Checkbox::Handle(const sf::Event& event)
 }
 
 // Actions
-void Checkbox::OnClick(const fptr& f)
+void Checkbox::OnClick(const callback_type& f)
 {
     m_onClick = f;
 }

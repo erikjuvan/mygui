@@ -23,7 +23,7 @@ public:
     sf::FloatRect GetGlobalBounds();
 
     // Actions
-    void OnClick(const fptr& f);
+    void OnClick(const callback_type& f);
 
 private:
     const sf::Color m_idle_color{sf::Color(200, 200, 200)};
@@ -37,7 +37,7 @@ private:
 
     bool m_pressed{false};
 
-    fptr m_onClick{nullptr};
+    callback_type m_onClick{nullptr};
 };
 
 } // namespace mygui

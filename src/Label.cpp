@@ -53,7 +53,7 @@ bool Label::Enabled() const
 }
 
 // Actions
-void Label::OnClick(const fptr& f)
+void Label::OnClick(const callback_type& f)
 {
     m_onClick = f;
 }

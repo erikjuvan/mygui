@@ -21,7 +21,7 @@ public:
     bool Enabled() const override;
 
     // Actions
-    void onKeyPress(const fptr& f);
+    void onKeyPress(const callback_type& f);
 
 private:
     static constexpr int m_margin{10};
@@ -32,7 +32,7 @@ private:
 
     bool m_mouseover{false};
 
-    fptr m_keyPress{nullptr};
+    callback_type m_keyPress{nullptr};
 };
 
 } // namespace mygui

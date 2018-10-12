@@ -20,7 +20,7 @@ public:
     bool Checked() const;
 
     // Actions
-    void OnClick(const fptr& f);
+    void OnClick(const callback_type& f);
 
 private:
     static constexpr int m_margin{20};
@@ -34,7 +34,7 @@ private:
     bool m_pressed_in_focus{false};
     bool m_checked;
 
-    fptr m_onClick{nullptr};
+    callback_type m_onClick{nullptr};
 };
 
 } // namespace mygui
