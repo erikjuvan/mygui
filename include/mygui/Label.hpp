@@ -2,29 +2,31 @@
 
 #include "Object.hpp"
 
-namespace mygui {
+namespace mygui
+{
 
-class MYGUI_API Label : public Object {
+class MYGUI_API Label : public Object
+{
 
 public:
-	Label(int x, int y, const char* text, int character_size = 18, const char* font_name = "arial.ttf");
+    Label(int x, int y, const char* text, int character_size = 18, const char* font_name = "arial.ttf");
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	virtual void Handle(const sf::Event& event) override;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    virtual void Handle(const sf::Event& event) override;
 
-	void Enabled(bool enabled) override;
-	bool Enabled() const override;
+    void Enabled(bool enabled) override;
+    bool Enabled() const override;
 
-	void SetText(const std::string& text);
+    void SetText(const std::string& text);
 
-	// Actions
-	void OnClick(const fptr& f);
+    // Actions
+    void OnClick(const fptr& f);
 
 private:
-	sf::Text	m_text;
-	sf::Font	m_font;
+    sf::Text m_text;
+    sf::Font m_font;
 
-	fptr		m_onClick{ nullptr };
+    fptr m_onClick{nullptr};
 };
 
-}
+} // namespace mygui
