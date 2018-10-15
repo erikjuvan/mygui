@@ -32,8 +32,8 @@ class MYGUI_API Chart : public Object
     using fptr = void (*)(const sf::Event&);
 
 public:
-    Chart::Chart(int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
-                 std::string const& x_axis = "x", std::string const& y_axis = "y", std::string const& font_name = "arial.ttf");
+    Chart(int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
+          std::string const& x_axis = "x", std::string const& y_axis = "y", std::string const& font_name = "arial.ttf");
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;
