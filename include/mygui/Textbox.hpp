@@ -24,7 +24,7 @@ public:
     void onKeyPress(const callback_type& f);
 
 private:
-    static constexpr int m_margin{10};
+    static constexpr int m_margin{5};
 
     sf::RectangleShape m_rect;
     sf::Text           m_text;
