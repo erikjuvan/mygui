@@ -26,7 +26,7 @@ void Label::Handle(const sf::Event& event)
 
     if (m_text.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
         if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            if (m_onClick)
+            if (m_onClick != nullptr)
                 m_onClick();
         }
     }

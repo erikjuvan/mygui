@@ -48,7 +48,7 @@ void Button::Handle(const sf::Event& event)
             m_pressed      = true;
         } else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
             m_active_shape = &m_idle_shape;
-            if (m_onClick && m_pressed)
+            if (m_onClick != nullptr && m_pressed)
                 m_onClick();
             m_pressed = false;
         }
