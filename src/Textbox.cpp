@@ -47,6 +47,9 @@ void Textbox::Handle(const sf::Event& event)
 
         if (txt.getGlobalBounds().width < (m_rect.getGlobalBounds().width - m_margin))
             SetText(str);
+
+        m_keyPress();
+
     } else if (event.type == sf::Event::MouseMoved) {
         if (m_rect.getGlobalBounds().contains(sf::Vector2f(event.mouseMove.x, event.mouseMove.y))) {
             m_mouseover = true;
