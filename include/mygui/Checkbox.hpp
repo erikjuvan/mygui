@@ -9,7 +9,7 @@ class MYGUI_API Checkbox : public Object
 {
 
 public:
-    Checkbox(int x, int y, const char* text = "", int w = 17, int h = 17, int character_size = 18, const char* font_name = "arial.ttf");
+    Checkbox(ResManager& rm, int x, int y, std::string const& text = "", int w = 17, int h = 17, int character_size = 18);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;
@@ -29,7 +29,6 @@ private:
     sf::RectangleShape  m_rect_unchecked;
     sf::RectangleShape* m_rect{nullptr};
     sf::Text            m_text;
-    sf::Font            m_font;
 
     bool m_pressed_in_focus{false};
     bool m_checked;

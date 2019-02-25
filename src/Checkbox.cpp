@@ -3,7 +3,8 @@
 namespace mygui
 {
 
-Checkbox::Checkbox(int x, int y, const char* text, int w, int h, int character_size, const char* font_name) :
+Checkbox::Checkbox(ResManager& rm, int x, int y, std::string const& text, int w, int h, int character_size) :
+    Object(rm),
     m_rect_checked(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))),
     m_rect_unchecked(m_rect_checked), m_checked(false)
 {
@@ -20,8 +21,7 @@ Checkbox::Checkbox(int x, int y, const char* text, int w, int h, int character_s
 
     m_rect = &m_rect_unchecked;
 
-    m_font.loadFromFile(font_name);
-    m_text.setFont(m_font);
+    m_text.setFont(*m_resource_manager->Font());
     m_text.setString(text);
     m_text.setCharacterSize(character_size);
     sf::FloatRect text_pos = m_text.getGlobalBounds();

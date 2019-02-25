@@ -9,7 +9,7 @@ class MYGUI_API Button : public Object
 {
 
 public:
-    Button(int x, int y, const char* text, int w = 90, int h = 30, int character_size = 20, const char* font_name = "arial.ttf");
+    Button(ResManager& rm, int x, int y, const char* text, int w = 90, int h = 30, int character_size = 20);
 
     // Virtual Methods
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -33,7 +33,6 @@ private:
     sf::RectangleShape  m_mouseover_shape;
     sf::RectangleShape* m_active_shape{nullptr};
     sf::Text            m_text;
-    sf::Font            m_font;
 
     bool m_pressed{false};
 

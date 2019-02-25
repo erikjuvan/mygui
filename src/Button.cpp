@@ -3,8 +3,8 @@
 namespace mygui
 {
 
-Button::Button(int x, int y, const char* text, int w, int h, int character_size, const char* font_name) :
-    m_idle_shape(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))), m_pressed_shape(m_idle_shape), m_pressed(false)
+Button::Button(ResManager& rm, int x, int y, const char* text, int w, int h, int character_size) :
+    Object(rm), m_idle_shape(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))), m_pressed_shape(m_idle_shape), m_pressed(false)
 {
 
     m_idle_shape.setPosition(static_cast<float>(x), static_cast<float>(y));
@@ -24,8 +24,7 @@ Button::Button(int x, int y, const char* text, int w, int h, int character_size,
 
     m_active_shape = &m_idle_shape;
 
-    m_font.loadFromFile(font_name);
-    m_text.setFont(m_font);
+    m_text.setFont(*m_resource_manager->Font());
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
     SetText(text);
