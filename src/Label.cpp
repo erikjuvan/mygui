@@ -1,12 +1,12 @@
 #include "Label.hpp"
+#include "ResourceManager.hpp"
 
 namespace mygui
 {
 
-Label::Label(ResManager& rm, int x, int y, const char* text, int character_size) :
-    Object(rm)
+Label::Label(int x, int y, std::string const& text, int character_size)
 {
-    m_text.setFont(*m_resource_manager->Font());
+    m_text.setFont(*ResourceManager::getInstance().Font());
     m_text.setString(text);
     m_text.setCharacterSize(character_size);
     m_text.setPosition(x, y);

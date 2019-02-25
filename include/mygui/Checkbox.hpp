@@ -9,7 +9,7 @@ class MYGUI_API Checkbox : public Object
 {
 
 public:
-    Checkbox(ResManager& rm, int x, int y, std::string const& text = "", int w = 17, int h = 17, int character_size = 18);
+    Checkbox(int x, int y, std::string const& text = "", int w = 17, int h = 17, int character_size = 18);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;

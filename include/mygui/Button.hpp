@@ -9,7 +9,7 @@ class MYGUI_API Button : public Object
 {
 
 public:
-    Button(ResManager& rm, int x, int y, const char* text, int w = 90, int h = 30, int character_size = 20);
+    Button(int x, int y, std::string const& text, int w = 90, int h = 30, int character_size = 20);
 
     // Virtual Methods
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

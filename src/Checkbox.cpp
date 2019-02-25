@@ -1,10 +1,10 @@
 #include "Checkbox.hpp"
+#include "ResourceManager.hpp"
 
 namespace mygui
 {
 
-Checkbox::Checkbox(ResManager& rm, int x, int y, std::string const& text, int w, int h, int character_size) :
-    Object(rm),
+Checkbox::Checkbox(int x, int y, std::string const& text, int w, int h, int character_size) :
     m_rect_checked(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))),
     m_rect_unchecked(m_rect_checked), m_checked(false)
 {
@@ -21,7 +21,7 @@ Checkbox::Checkbox(ResManager& rm, int x, int y, std::string const& text, int w,
 
     m_rect = &m_rect_unchecked;
 
-    m_text.setFont(*m_resource_manager->Font());
+    m_text.setFont(*ResourceManager::getInstance().Font());
     m_text.setString(text);
     m_text.setCharacterSize(character_size);
     sf::FloatRect text_pos = m_text.getGlobalBounds();

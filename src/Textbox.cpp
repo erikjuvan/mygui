@@ -1,19 +1,18 @@
 #include "Textbox.hpp"
+#include "ResourceManager.hpp"
 
 namespace mygui
 {
 
-Textbox::Textbox(ResManager& rm, int x, int y, const std::string& text, int w, int h, int character_size) :
-    Object(rm),
+Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int character_size) :
     m_rect(sf::Vector2f(static_cast<float>(w), static_cast<float>(h)))
 {
-
     m_rect.setPosition(static_cast<float>(x), static_cast<float>(y));
     m_rect.setFillColor(sf::Color::White);
     m_rect.setOutlineColor(sf::Color::Black);
     m_rect.setOutlineThickness(1.f);
 
-    m_text.setFont(*m_resource_manager->Font());
+    m_text.setFont(*ResourceManager::getInstance().Font());
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
     SetText(text);

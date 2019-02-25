@@ -6,12 +6,24 @@
 namespace mygui
 {
 
+// Singleton
 class MYGUI_API ResourceManager
 {
 private:
+    ResourceManager() {} // private constructor
+
     std::shared_ptr<sf::Font> m_font;
 
 public:
+    ResourceManager(ResourceManager const&) = delete;
+    void operator=(ResourceManager const&) = delete;
+
+    static ResourceManager& getInstance()
+    {
+        static ResourceManager instance;
+        return instance;
+    }
+
     bool Font(std::string const& font_name)
     {
         if (!m_font) {

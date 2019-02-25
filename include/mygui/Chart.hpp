@@ -32,7 +32,7 @@ class MYGUI_API Chart : public Object
     using fptr = void (*)(const sf::Event&);
 
 public:
-    Chart(ResManager& rm, int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
+    Chart(int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
           std::string const& x_axis = "x", std::string const& y_axis = "y");
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
