@@ -8,22 +8,15 @@ namespace mygui
 
 class MYGUI_API ResourceManager
 {
-private:
-    std::shared_ptr<sf::Font> m_font;
+protected:
+    inline static std::string m_system_font_name = "arial.ttf"; // default
 
 public:
-    bool Font(std::string const& font_name)
-    {
-        if (!m_font) {
-            m_font = std::make_shared<sf::Font>();
-        }
-        return m_font->loadFromFile(font_name);
-    }
+    ResourceManager() {}
+    ResourceManager(ResourceManager const& rm) = delete;
+    ResourceManager& operator=(ResourceManager const& rm) = delete;
 
-    auto Font() const
-    {
-        return m_font;
-    }
+    static void FontName(std::string const& font_name) { m_system_font_name = font_name; }
 };
 
 } // namespace mygui

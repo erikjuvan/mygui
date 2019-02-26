@@ -3,10 +3,10 @@
 namespace mygui
 {
 
-Label::Label(ResManager& rm, int x, int y, const char* text, int character_size) :
-    Object(rm)
+Label::Label(int x, int y, const char* text, int character_size)
 {
-    m_text.setFont(*m_resource_manager->Font());
+    m_font.loadFromFile(m_system_font_name);
+    m_text.setFont(m_font);
     m_text.setString(text);
     m_text.setCharacterSize(character_size);
     m_text.setPosition(x, y);

@@ -3,8 +3,7 @@
 namespace mygui
 {
 
-Textbox::Textbox(ResManager& rm, int x, int y, const std::string& text, int w, int h, int character_size) :
-    Object(rm),
+Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int character_size) :
     m_rect(sf::Vector2f(static_cast<float>(w), static_cast<float>(h)))
 {
 
@@ -13,7 +12,8 @@ Textbox::Textbox(ResManager& rm, int x, int y, const std::string& text, int w, i
     m_rect.setOutlineColor(sf::Color::Black);
     m_rect.setOutlineThickness(1.f);
 
-    m_text.setFont(*m_resource_manager->Font());
+    m_font.loadFromFile(m_system_font_name);
+    m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
     SetText(text);

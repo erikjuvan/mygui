@@ -43,14 +43,12 @@ void Signal::Edit(float* buf, int start, int size)
     }
 }
 
-Chart::Chart(ResManager& rm, int x, int y, int w, int h, int num_of_points, std::string const& title,
+Chart::Chart(int x, int y, int w, int h, int num_of_points, std::string const& title,
              std::string const& x_axis, std::string const& y_axis) :
-    Object(rm),
     m_num_of_points(num_of_points),
     m_background(sf::Vector2f(w, h)),
     m_chart_region(sf::Vector2f(w - 6 * m_margin, h - 5 * m_margin))
 {
-
     m_background.setPosition(x, y);
     m_background.setOutlineColor(sf::Color::Black);
     m_background.setOutlineThickness(1.f);
@@ -60,9 +58,10 @@ Chart::Chart(ResManager& rm, int x, int y, int w, int h, int num_of_points, std:
     m_chart_region.setOutlineThickness(1.f);
     m_chart_rect = m_chart_region.getGlobalBounds();
 
-    m_title.setFont(*m_resource_manager->Font());
-    m_x_axis.setFont(*m_resource_manager->Font());
-    m_y_axis.setFont(*m_resource_manager->Font());
+    m_font.loadFromFile(m_system_font_name);
+    m_title.setFont(m_font);
+    m_x_axis.setFont(m_font);
+    m_y_axis.setFont(m_font);
 
     m_title.setFillColor(sf::Color::Black);
     m_title.setString(title);
@@ -194,7 +193,7 @@ void Chart::CreateAxisMarkers()
     for (int i = 0; i < n; ++i) {
         m_x_axis_markers.push_back(sf::Text());
         auto& marker = m_x_axis_markers[m_x_axis_markers.size() - 1];
-        marker.setFont(*m_resource_manager->Font());
+        marker.setFont(m_font);
         marker.setFillColor(sf::Color::Black);
         marker.setCharacterSize(18);
         int tmp = i * m_num_of_points / (n - 1);
@@ -209,7 +208,7 @@ void Chart::CreateAxisMarkers()
     for (int i = 0; i < n; ++i) {
         m_y_axis_markers.push_back(sf::Text());
         auto& marker = m_y_axis_markers[m_y_axis_markers.size() - 1];
-        marker.setFont(*m_resource_manager->Font());
+        marker.setFont(m_font);
         marker.setFillColor(sf::Color::Black);
         marker.setCharacterSize(18);
         float             tmp = i * m_max_val / (n - 1);

@@ -26,13 +26,13 @@ private:
     bool m_draw{true};
 };
 
-class MYGUI_API Chart : public Object
+class MYGUI_API Chart : public Object, public ResourceManager
 {
 
     using fptr = void (*)(const sf::Event&);
 
 public:
-    Chart(ResManager& rm, int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
+    Chart(int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
           std::string const& x_axis = "x", std::string const& y_axis = "y");
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -57,6 +57,8 @@ public:
 
 private:
     static constexpr int m_margin{20};
+
+    sf::Font m_font;
 
     sf::RectangleShape m_background;
     sf::RectangleShape m_chart_region;
