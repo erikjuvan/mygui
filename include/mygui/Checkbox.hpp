@@ -9,7 +9,7 @@ class MYGUI_API Checkbox : public Object, public ResourceManager
 {
 
 public:
-    Checkbox(int x, int y, std::string const& text = "", int w = 17, int h = 17, int character_size = 18);
+    Checkbox(int x, int y, std::string const& text = "", int w = 14, int h = 14, int character_size = 14);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;
@@ -18,13 +18,12 @@ public:
     bool Enabled() const override;
     void Checked(bool checked);
     bool Checked() const;
+    void SetText(const std::string& text);
 
     // Actions
     void OnClick(const callback_type& f);
 
 private:
-    static constexpr int m_margin{20};
-
     sf::RectangleShape  m_rect_checked;
     sf::RectangleShape  m_rect_unchecked;
     sf::RectangleShape* m_rect{nullptr};

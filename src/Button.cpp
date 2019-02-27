@@ -76,20 +76,17 @@ bool Button::Enabled() const
 
 void Button::SetText(const std::string& text)
 {
+    // top heavy/bottom heavy letter hack
+    m_text.setString("I"); // choose top heavy string and save center
+    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
+    // Set text
     m_text.setString(text);
-
-    float tx = m_text.getLocalBounds().left;
-    float tw = m_text.getLocalBounds().width;
-    float ty = m_text.getLocalBounds().top;
-    float th = m_text.getLocalBounds().height;
-
-    float x = m_idle_shape.getGlobalBounds().left;
-    float w = m_idle_shape.getGlobalBounds().width;
-    float y = m_idle_shape.getGlobalBounds().top;
-    float h = m_idle_shape.getGlobalBounds().height;
-
-    m_text.setOrigin(tx + tw / 2.0f, ty + th / 2.0f);
-    m_text.setPosition(x + w / 2.0f, y + h / 2.0f);
+    // Get bounds
+    auto const& text_bounds  = m_text.getLocalBounds();
+    auto const& shape_bounds = m_idle_shape.getGlobalBounds();
+    // Correct location to center
+    m_text.setOrigin(text_bounds.left + text_bounds.width / 2.f, y_center);
+    m_text.setPosition(shape_bounds.left + shape_bounds.width / 2.f, shape_bounds.top + shape_bounds.height / 2.f);
 }
 
 sf::FloatRect Button::GetGlobalBounds()
