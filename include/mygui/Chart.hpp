@@ -26,7 +26,7 @@ private:
     bool m_draw{true};
 };
 
-class MYGUI_API Chart : public Object, public ResourceManager
+class MYGUI_API Chart : public Object
 {
 
     using fptr = void (*)(const sf::Event&);

@@ -5,7 +5,7 @@
 namespace mygui
 {
 
-class MYGUI_API Button : public Object, public ResourceManager
+class MYGUI_API Button : public Object
 {
 
 public:

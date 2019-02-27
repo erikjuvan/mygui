@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Config.hpp"
-#include "ResourceManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <functional>
 

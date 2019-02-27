@@ -1,4 +1,5 @@
 #include "Label.hpp"
+#include "ResourceManager.hpp"
 
 namespace mygui
 {
@@ -6,7 +7,7 @@ namespace mygui
 Label::Label(int x, int y, std::string const& text, int character_size) :
     m_x(x), m_y(y)
 {
-    m_font.loadFromFile(m_system_font_name);
+    m_font.loadFromFile(ResourceManager::GetSystemFontName());
     m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);

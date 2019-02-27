@@ -1,4 +1,5 @@
 #include "Textbox.hpp"
+#include "ResourceManager.hpp"
 
 namespace mygui
 {
@@ -12,7 +13,7 @@ Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int charac
     m_rect.setOutlineColor(sf::Color::Black);
     m_rect.setOutlineThickness(1.f);
 
-    m_font.loadFromFile(m_system_font_name);
+    m_font.loadFromFile(ResourceManager::GetSystemFontName());
     m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);

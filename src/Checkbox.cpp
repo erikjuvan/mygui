@@ -1,4 +1,5 @@
 #include "Checkbox.hpp"
+#include "ResourceManager.hpp"
 #include <iostream>
 
 namespace mygui
@@ -21,7 +22,7 @@ Checkbox::Checkbox(int x, int y, std::string const& text, int w, int h, int char
 
     m_rect = &m_rect_unchecked;
 
-    m_font.loadFromFile(m_system_font_name);
+    m_font.loadFromFile(ResourceManager::GetSystemFontName());
     m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
