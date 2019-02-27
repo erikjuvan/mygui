@@ -9,7 +9,7 @@ namespace mygui
 class MYGUI_API ResourceManager
 {
 protected:
-    inline static std::string m_system_font_name = "arial.ttf"; // default
+    inline static std::string m_system_font_name; // No default font
 
 public:
     ResourceManager() {}
