@@ -17,6 +17,15 @@ Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int charac
     m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
+
+    // top heavy/bottom heavy letter hack
+    m_text.setString("I"); // choose top heavy string and save center
+    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
+    // Get bounds
+    auto const& shape_bounds = m_rect.getGlobalBounds();
+    // Correct location to center
+    m_text.setOrigin(0, y_center);
+    m_text.setPosition(shape_bounds.left + m_margin, shape_bounds.top + shape_bounds.height / 2.f);
     SetText(text);
 }
 
@@ -63,17 +72,8 @@ void Textbox::Handle(const sf::Event& event)
 
 void Textbox::SetText(const std::string& text)
 {
-    // top heavy/bottom heavy letter hack
-    m_text.setString("I"); // choose top heavy string and save center
-    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
     // Set text
     m_text.setString(text);
-    // Get bounds
-    auto const& text_bounds  = m_text.getLocalBounds();
-    auto const& shape_bounds = m_rect.getGlobalBounds();
-    // Correct location to center
-    m_text.setOrigin(text_bounds.left, y_center);
-    m_text.setPosition(shape_bounds.left + m_margin, shape_bounds.top + shape_bounds.height / 2.f);
 }
 
 std::string Textbox::GetText() const

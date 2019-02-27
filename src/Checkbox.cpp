@@ -26,6 +26,15 @@ Checkbox::Checkbox(int x, int y, std::string const& text, int w, int h, int char
     m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
+
+    // top heavy/bottom heavy letter hack
+    m_text.setString("I"); // choose top heavy string and save center
+    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
+    // Get bounds
+    auto const& shape_bounds = m_rect_unchecked.getGlobalBounds();
+    // Correct location to left middle
+    m_text.setOrigin(0, y_center);
+    m_text.setPosition(shape_bounds.left + shape_bounds.width + 4.f, shape_bounds.top + shape_bounds.height / 2.f);
     SetText(text);
 }
 
@@ -104,17 +113,8 @@ bool Checkbox::Enabled() const
 // e.g. if text is "ab" vs "ap" those 2 texts won't be aligned, "ab" will be lower and "ap" will be higher
 void Checkbox::SetText(const std::string& text)
 {
-    // top heavy/bottom heavy letter hack
-    m_text.setString("I"); // choose top heavy string and save center
-    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
     // Set text
     m_text.setString(text);
-    // Get bounds
-    auto const& text_bounds  = m_text.getLocalBounds();
-    auto const& shape_bounds = m_rect_unchecked.getGlobalBounds();
-    // Correct location to left middle
-    m_text.setOrigin(text_bounds.left, y_center);
-    m_text.setPosition(shape_bounds.left + shape_bounds.width + 4.f, shape_bounds.top + shape_bounds.height / 2.f);
 }
 
 } // namespace mygui
