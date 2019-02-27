@@ -5,11 +5,11 @@
 namespace mygui
 {
 
-class MYGUI_API Label : public Object
+class MYGUI_API Label : public Object, public ResourceManager
 {
 
 public:
-    Label(int x, int y, const char* text, int character_size = 18, const char* font_name = "arial.ttf");
+    Label(int x, int y, std::string const& text, int character_size = 14);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;
@@ -23,6 +23,8 @@ public:
     void OnClick(const callback_type& f);
 
 private:
+    float m_x, m_y;
+
     sf::Text m_text;
     sf::Font m_font;
 

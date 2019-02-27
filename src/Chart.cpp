@@ -44,14 +44,11 @@ void Signal::Edit(float* buf, int start, int size)
 }
 
 Chart::Chart(int x, int y, int w, int h, int num_of_points, std::string const& title,
-             std::string const& x_axis, std::string const& y_axis, std::string const& font_name) :
+             std::string const& x_axis, std::string const& y_axis) :
     m_num_of_points(num_of_points),
     m_background(sf::Vector2f(w, h)),
     m_chart_region(sf::Vector2f(w - 6 * m_margin, h - 5 * m_margin))
 {
-
-    m_font.loadFromFile(font_name);
-
     m_background.setPosition(x, y);
     m_background.setOutlineColor(sf::Color::Black);
     m_background.setOutlineThickness(1.f);
@@ -61,6 +58,7 @@ Chart::Chart(int x, int y, int w, int h, int num_of_points, std::string const& t
     m_chart_region.setOutlineThickness(1.f);
     m_chart_rect = m_chart_region.getGlobalBounds();
 
+    m_font.loadFromFile(m_system_font_name);
     m_title.setFont(m_font);
     m_x_axis.setFont(m_font);
     m_y_axis.setFont(m_font);

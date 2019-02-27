@@ -5,11 +5,11 @@
 namespace mygui
 {
 
-class MYGUI_API Button : public Object
+class MYGUI_API Button : public Object, public ResourceManager
 {
 
 public:
-    Button(int x, int y, const char* text, int w = 90, int h = 30, int character_size = 20, const char* font_name = "arial.ttf");
+    Button(int x, int y, const char* text, int w = 80, int h = 30, int character_size = 14);
 
     // Virtual Methods
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

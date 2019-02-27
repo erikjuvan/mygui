@@ -26,14 +26,14 @@ private:
     bool m_draw{true};
 };
 
-class MYGUI_API Chart : public Object
+class MYGUI_API Chart : public Object, public ResourceManager
 {
 
     using fptr = void (*)(const sf::Event&);
 
 public:
     Chart(int x, int y, int w, int h, int num_of_points, std::string const& title = "Example",
-          std::string const& x_axis = "x", std::string const& y_axis = "y", std::string const& font_name = "arial.ttf");
+          std::string const& x_axis = "x", std::string const& y_axis = "y");
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;
@@ -58,6 +58,8 @@ public:
 private:
     static constexpr int m_margin{20};
 
+    sf::Font m_font;
+
     sf::RectangleShape m_background;
     sf::RectangleShape m_chart_region;
     sf::FloatRect      m_chart_rect;
@@ -71,8 +73,6 @@ private:
 
     std::vector<sf::Text> m_x_axis_markers;
     std::vector<sf::Text> m_y_axis_markers;
-
-    sf::Font m_font;
 
     std::vector<Signal*> m_signals;
     std::vector<bool>    m_draw_signal;

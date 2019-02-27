@@ -26,6 +26,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	
 target_sources(${PROJECT_NAME} PRIVATE
 	include/mygui/Config.hpp
+	include/mygui/ResourceManager.hpp
 	include/mygui/Object.hpp
 	include/mygui/Button.hpp
 	include/mygui/Label.hpp

@@ -1,9 +1,10 @@
 #include "Checkbox.hpp"
+#include <iostream>
 
 namespace mygui
 {
 
-Checkbox::Checkbox(int x, int y, const char* text, int w, int h, int character_size, const char* font_name) :
+Checkbox::Checkbox(int x, int y, std::string const& text, int w, int h, int character_size) :
     m_rect_checked(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))),
     m_rect_unchecked(m_rect_checked), m_checked(false)
 {
@@ -20,13 +21,11 @@ Checkbox::Checkbox(int x, int y, const char* text, int w, int h, int character_s
 
     m_rect = &m_rect_unchecked;
 
-    m_font.loadFromFile(font_name);
+    m_font.loadFromFile(m_system_font_name);
     m_text.setFont(m_font);
-    m_text.setString(text);
     m_text.setCharacterSize(character_size);
-    sf::FloatRect text_pos = m_text.getGlobalBounds();
-    m_text.setPosition(x + w + m_margin / 2.f, y - 2.f);
     m_text.setFillColor(sf::Color::Black);
+    SetText(text);
 }
 
 void Checkbox::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -98,6 +97,23 @@ void Checkbox::Enabled(bool enabled)
 bool Checkbox::Enabled() const
 {
     return m_enabled;
+}
+
+// Known "issue"  (not really an issue just an estetic "bug") that I circumvented - if text has top heavy 'b' and/or bottom heavy 'p' - letters then the center of text changes
+// e.g. if text is "ab" vs "ap" those 2 texts won't be aligned, "ab" will be lower and "ap" will be higher
+void Checkbox::SetText(const std::string& text)
+{
+    // top heavy/bottom heavy letter hack
+    m_text.setString("I"); // choose top heavy string and save center
+    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
+    // Set text
+    m_text.setString(text);
+    // Get bounds
+    auto const& text_bounds  = m_text.getLocalBounds();
+    auto const& shape_bounds = m_rect_unchecked.getGlobalBounds();
+    // Correct location to left middle
+    m_text.setOrigin(text_bounds.left, y_center);
+    m_text.setPosition(shape_bounds.left + shape_bounds.width + 4.f, shape_bounds.top + shape_bounds.height / 2.f);
 }
 
 } // namespace mygui

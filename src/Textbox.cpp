@@ -3,7 +3,7 @@
 namespace mygui
 {
 
-Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int character_size, const char* font_name) :
+Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int character_size) :
     m_rect(sf::Vector2f(static_cast<float>(w), static_cast<float>(h)))
 {
 
@@ -12,7 +12,7 @@ Textbox::Textbox(int x, int y, const std::string& text, int w, int h, int charac
     m_rect.setOutlineColor(sf::Color::Black);
     m_rect.setOutlineThickness(1.f);
 
-    m_font.loadFromFile(font_name);
+    m_font.loadFromFile(m_system_font_name);
     m_text.setFont(m_font);
     m_text.setCharacterSize(character_size);
     m_text.setFillColor(sf::Color::Black);
@@ -62,15 +62,17 @@ void Textbox::Handle(const sf::Event& event)
 
 void Textbox::SetText(const std::string& text)
 {
+    // top heavy/bottom heavy letter hack
+    m_text.setString("I"); // choose top heavy string and save center
+    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
+    // Set text
     m_text.setString(text);
-
-    float tx = m_text.getLocalBounds().left;
-    float tw = m_text.getLocalBounds().width;
-    float ty = m_text.getLocalBounds().top;
-    float th = m_text.getLocalBounds().height;
-
-    m_text.setOrigin(tx, ty + th / 2.0f);
-    m_text.setPosition(m_rect.getPosition().x + m_margin, m_rect.getPosition().y + m_rect.getLocalBounds().height / 2.0f);
+    // Get bounds
+    auto const& text_bounds  = m_text.getLocalBounds();
+    auto const& shape_bounds = m_rect.getGlobalBounds();
+    // Correct location to center
+    m_text.setOrigin(text_bounds.left, y_center);
+    m_text.setPosition(shape_bounds.left + m_margin, shape_bounds.top + shape_bounds.height / 2.f);
 }
 
 std::string Textbox::GetText() const

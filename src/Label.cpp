@@ -3,15 +3,14 @@
 namespace mygui
 {
 
-Label::Label(int x, int y, const char* text, int character_size, const char* font_name)
+Label::Label(int x, int y, std::string const& text, int character_size) :
+    m_x(x), m_y(y)
 {
-
-    m_font.loadFromFile(font_name);
+    m_font.loadFromFile(m_system_font_name);
     m_text.setFont(m_font);
-    m_text.setString(text);
     m_text.setCharacterSize(character_size);
-    m_text.setPosition(x, y);
     m_text.setFillColor(sf::Color::Black);
+    SetText(text);
 }
 
 void Label::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -34,7 +33,16 @@ void Label::Handle(const sf::Event& event)
 
 void Label::SetText(const std::string& text)
 {
+    // top heavy/bottom heavy letter hack
+    m_text.setString("I"); // choose top heavy string and save center
+    float y_center = m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f;
+    // Set text
     m_text.setString(text);
+    // Get bounds
+    auto const& text_bounds = m_text.getLocalBounds();
+    // Correct location to left middle
+    m_text.setOrigin(text_bounds.left, y_center);
+    m_text.setPosition(m_x, m_y);
 }
 
 void Label::Enabled(bool enabled)
