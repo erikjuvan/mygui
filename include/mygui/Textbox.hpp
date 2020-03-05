@@ -26,7 +26,8 @@ public:
     using Object::Selected;
 
     // Actions
-    void onKeyPress(const callback_type& f);
+    void OnKeyPress(const callback_type& f);
+    void OnEnterPress(const callback_type& f);
 
 private:
     const int m_margin{5};
@@ -38,6 +39,7 @@ private:
     bool m_mouseover{false};
 
     callback_type m_keyPress{nullptr};
+    callback_type m_enterPress{nullptr};
 };
 
 } // namespace mygui

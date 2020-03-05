@@ -67,6 +67,9 @@ void Textbox::Handle(const sf::Event& event)
         } else {
             Selected(false);
         }
+    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && Selected()) {
+        if (m_enterPress != nullptr)
+            m_enterPress();
     }
 }
 
@@ -81,9 +84,14 @@ std::string Textbox::GetText() const
     return m_text.getString();
 }
 
-void Textbox::onKeyPress(const callback_type& f)
+void Textbox::OnKeyPress(const callback_type& f)
 {
     m_keyPress = f;
+}
+
+void Textbox::OnEnterPress(const callback_type& f)
+{
+    m_enterPress = f;
 }
 
 void Textbox::Enabled(bool enabled)
