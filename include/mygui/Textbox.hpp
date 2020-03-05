@@ -17,8 +17,13 @@ public:
     void        SetText(const std::string& text);
     std::string GetText() const;
 
-    void Enabled(bool enabled) override;
-    bool Enabled() const override;
+    virtual void Enabled(bool enabled) override;
+    // Unhide bool Object::Enabled()
+    using Object::Enabled;
+
+    virtual void Selected(bool selected) override;
+    // Unhide bool Object::Enabled()
+    using Object::Selected;
 
     // Actions
     void onKeyPress(const callback_type& f);

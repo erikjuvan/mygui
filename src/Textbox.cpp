@@ -40,7 +40,7 @@ void Textbox::Handle(const sf::Event& event)
     if (!Enabled())
         return;
 
-    if (event.type == sf::Event::TextEntered && m_mouseover) {
+    if (event.type == sf::Event::TextEntered && Selected()) {
 
         std::string str = m_text.getString();
 
@@ -61,11 +61,11 @@ void Textbox::Handle(const sf::Event& event)
         if (m_keyPress != nullptr)
             m_keyPress();
 
-    } else if (event.type == sf::Event::MouseMoved) {
-        if (m_rect.getGlobalBounds().contains(sf::Vector2f(event.mouseMove.x, event.mouseMove.y))) {
-            m_mouseover = true;
+    } else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+        if (m_rect.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y))) {
+            Selected(true);
         } else {
-            m_mouseover = false;
+            Selected(false);
         }
     }
 }
@@ -96,9 +96,14 @@ void Textbox::Enabled(bool enabled)
     }
 }
 
-bool Textbox::Enabled() const
+void Textbox::Selected(bool selected)
 {
-    return m_enabled;
+    m_selected = selected;
+    if (selected) {
+        m_rect.setOutlineColor(sf::Color::Green);
+    } else {
+        m_rect.setOutlineColor(sf::Color::Black);
+    }
 }
 
 } // namespace mygui
