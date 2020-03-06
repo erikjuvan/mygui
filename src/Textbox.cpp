@@ -47,6 +47,9 @@ void Textbox::Handle(const sf::Event& event)
         if (event.text.unicode == '\b') {
             if (str.length() > 0)
                 str.pop_back();
+        } else if (event.text.unicode == 13) { // 13 - CR ... discard Enter press
+            if (m_enterPress != nullptr)
+                m_enterPress();
         } else {
             str += event.text.unicode;
         }
@@ -67,9 +70,6 @@ void Textbox::Handle(const sf::Event& event)
         } else {
             Selected(false);
         }
-    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && Selected()) {
-        if (m_enterPress != nullptr)
-            m_enterPress();
     }
 }
 
