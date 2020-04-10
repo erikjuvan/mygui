@@ -22,6 +22,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	src/Textbox.cpp	
 	src/Checkbox.cpp
 	src/Chart.cpp
+	src/Action.cpp
 	)
 	
 target_sources(${PROJECT_NAME} PRIVATE
@@ -33,6 +34,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	include/mygui/Textbox.hpp
 	include/mygui/Checkbox.hpp
 	include/mygui/Chart.hpp
+	include/mygui/Action.hpp
 	)
 	
 target_include_directories(${PROJECT_NAME} PRIVATE include/mygui)
