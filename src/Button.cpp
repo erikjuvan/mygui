@@ -5,7 +5,7 @@ namespace mygui
 {
 
 Button::Button(int x, int y, const char* text, int w, int h, int character_size) :
-    m_idle_shape(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))), m_pressed_shape(m_idle_shape), m_pressed(false)
+    m_idle_shape(sf::Vector2f(static_cast<float>(w), static_cast<float>(h))), m_pressed_shape(m_idle_shape), m_mouseover_shape(m_idle_shape), m_pressed(false)
 {
     m_idle_shape.setPosition(static_cast<float>(x), static_cast<float>(y));
     m_idle_shape.setFillColor(m_idle_color);
@@ -47,16 +47,18 @@ void Button::Handle(const sf::Event& event)
             m_active_shape = &m_pressed_shape;
             m_pressed      = true;
         } else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            m_active_shape = &m_idle_shape;
+            m_active_shape = &m_mouseover_shape;
             if (m_onClick != nullptr && m_pressed)
                 m_onClick();
             m_pressed = false;
         }
+    } else if (m_active_shape->getGlobalBounds().contains(sf::Vector2f(event.mouseMove.x, event.mouseMove.y))) {
+        if (m_pressed)
+            m_active_shape = &m_pressed_shape;
+        else
+            m_active_shape = &m_mouseover_shape;
     } else {
-        if (m_active_shape == &m_pressed_shape && event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-            m_active_shape = &m_idle_shape;
-            m_pressed      = false;
-        }
+        m_active_shape = &m_idle_shape;
     }
 }
 
