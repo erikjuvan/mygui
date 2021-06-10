@@ -9,7 +9,7 @@ class MYGUI_API Label : public Object
 {
 
 public:
-    Label(int x, int y, std::string const& text, int character_size = 14);
+    Label(int x, int y, std::string const& text, int character_size = 12);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;

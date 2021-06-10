@@ -9,7 +9,7 @@ class MYGUI_API Textbox : public Object
 {
 
 public:
-    Textbox(int x, int y, const std::string& text = "", int w = 80, int h = 30, int character_size = 14);
+    Textbox(int x, int y, const std::string& text = "", int w = 70, int h = 22, int character_size = 12);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     virtual void Handle(const sf::Event& event) override;
